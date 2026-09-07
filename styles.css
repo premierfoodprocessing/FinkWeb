@@ -187,6 +187,12 @@ em { color: var(--ember); font-style: normal; }
 .ad-space-label { flex: 0 0 auto; padding: 5px 8px; border: 1px solid rgba(22,143,157,.35); color: var(--cyan-deep); font-size: 8px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
 .ad-space strong { display: block; color: var(--navy); font: 700 15px var(--display); }
 .ad-space p { margin: 2px 0 0; color: #79858a; font-size: 11px; }
+.ad-space-products { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+.ad-space-product { min-width: 180px; padding: 10px 12px; border: 1px solid rgba(22,143,157,.24); background: rgba(255,255,255,.48); transition: border-color .2s ease, transform .2s ease; }
+.ad-space-product:hover { border-color: var(--cyan-deep); transform: translateY(-2px); }
+.ad-space-product span, .ad-space-product small { display: block; color: #79858a; font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.ad-space-product b { display: block; margin: 3px 0; color: var(--navy); font-size: 12px; }
+.ad-space-product small { color: var(--cyan-deep); }
 .site-footer { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-top: 25px; padding-bottom: 35px; border-top: 1px solid var(--line); }
 .site-footer .brand { color: var(--navy); }.site-footer .brand small { color: var(--cyan-deep); }
 .site-footer p { margin: 0; color: #79858a; font-size: 11px; }.footer-links { display: flex; gap: 25px; color: #79858a; font-size: 10px; }.footer-links a { color: var(--cyan-deep); }
