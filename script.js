@@ -26,3 +26,43 @@ if (sponsorRotation) {
     sponsors[activeSponsor].inert = false;
   }, 8000);
 }
+
+const partyFrame = document.querySelector('.party-spotlight-art');
+const partyVideo = partyFrame && partyFrame.querySelector('video');
+const partyHoverable = matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)');
+const partyStillMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+if (partyVideo) {
+  let hovering = false;
+  const reveal = () => partyFrame.classList.add('is-ready');
+  const start = () => {
+    reveal();
+    partyFrame.classList.add('is-live');
+    partyVideo.currentTime = 0;
+    partyVideo.play().catch(() => {});
+  };
+  const stop = () => {
+    partyFrame.classList.remove('is-live');
+    partyVideo.pause();
+    partyVideo.currentTime = 0;
+  };
+
+  ['loadeddata', 'canplay'].forEach((event) => partyVideo.addEventListener(event, reveal, { once: true }));
+
+  if (partyStillMotion.matches) {
+    reveal();
+  } else if (partyHoverable.matches) {
+    partyFrame.addEventListener('mouseenter', () => { hovering = true; start(); });
+    partyFrame.addEventListener('mouseleave', () => { hovering = false; stop(); });
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        if (hovering) start();
+      } else {
+        stop();
+      }
+    }, { threshold: 0.15 }).observe(partyFrame);
+  } else {
+    reveal();
+    partyVideo.play().catch(() => {});
+  }
+}
